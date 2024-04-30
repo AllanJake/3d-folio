@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { getProject } from '@theatre/core';
 import { SoftShadows } from "@react-three/drei";
 import studio from "@theatre/studio";
@@ -25,7 +25,7 @@ const CabinetSheet = getProject('ArcadeCabProject', { state: ArcadeCabState }).s
 const Projects = () => {
 
   useEffect(() => {
-    CabinetSheet.project.ready.then(() => CabinetSheet.sequence.play({ iterationCount: 1, range: [0, 4]}))
+    CabinetSheet.project.ready.then(() => CabinetSheet.sequence.play({ iterationCount: 1, range: [0, 4]}));
   }, [])
 
   return (
@@ -51,7 +51,7 @@ const Projects = () => {
               <ArcadeCabinet />
               <ArcadeButtonA />
               <ArcadeButtonB />
-              <ArcadeJoystick />
+              <ArcadeJoystick onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)} />
 
               {/* Floor Mesh */}
               <mesh
